@@ -6,8 +6,6 @@ import EstimatedDateSelectorField from '../EstimatedDateSelectorField';
 import FormField from '../FormField';
 import TextAreaField from '../TextAreaField';
 
-import categoriesData from './categoriesData.js';
-
 const validate = (values) => {
   const errors = {};
   if (!values.email) {
@@ -43,7 +41,7 @@ const SyncValidationForm = (props) => {
         name="categoria"
         component={CategorySelectorField}
         label="Categoría"
-        categories={categoriesData}
+        categories={props.categories}
       />
       {pricePreferences.map((option) =>
         <Field

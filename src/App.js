@@ -7,6 +7,29 @@ import logo from './images/logo.png';
 import './App.css';
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      categories: [],
+    }
+  }
+
+  componentDidMount() {
+    axios.get(
+      'http://localhost:8000/app_dev.php/categories',
+      {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        }
+      }
+    )
+    .then((response) => this.setState({
+      ...this.state,
+      categories: response.data,
+    }));
+  }
+
   render() {
     return (
       <div className="App">
@@ -14,8 +37,9 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Solicitud presupuesto</h1>
         </header>
-        <SinglePageFormLayout onClickSubmit={(values) =>
-          axios.post(
+        <SinglePageFormLayout
+          categories={this.state.categories}
+          onClickSubmit={(values) => axios.post(
             'http://localhost:8000/app_dev.php/budgets',
             {
               description: values.descripcion,
