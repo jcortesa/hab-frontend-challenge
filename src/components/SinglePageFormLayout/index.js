@@ -72,6 +72,12 @@ const SyncValidationForm = (props) => {
         component={FormField}
         label="Teléfono"
       />
+      <Field
+        name="direccion"
+        type="text"
+        component={FormField}
+        label="Dirección"
+      />
       {
         props.hasError && (
           <p>Errores encontrados</p>
