@@ -15,7 +15,7 @@ const CategorySelectorField = ({
       <select {...input}>
         <option value="">Seleccionar una categoría…</option>
         {categories.map((category) =>
-          <optgroup label={category.name}>
+          <optgroup label={category.name} key={category.id}>
             {category.children.map((childCategory) =>
               <option value={childCategory.id} key={childCategory.id}>
                 {childCategory.name}

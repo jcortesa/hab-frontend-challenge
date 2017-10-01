@@ -4,7 +4,7 @@ import React from 'react';
 import CategorySelectorField from '../CategorySelectorField';
 import EstimatedDateSelectorField from '../EstimatedDateSelectorField';
 import FormField from '../FormField';
-import TextAreaField from '../TextAreaField';
+import TextareaField from '../TextareaField';
 
 const validate = (values) => {
   const errors = {};
@@ -29,7 +29,7 @@ const SyncValidationForm = (props) => {
     <form onSubmit={handleSubmit}>
       <Field
         name="descripcion"
-        component={TextAreaField}
+        component={TextareaField}
         label="Descripción"
       />
       <Field
@@ -43,9 +43,10 @@ const SyncValidationForm = (props) => {
         label="Categoría"
         categories={props.categories}
       />
-      {pricePreferences.map((option) =>
+      {pricePreferences.map((option, key) =>
         <Field
           component={FormField}
+          key={key}
           label={option}
           name="preferenciaPrecio"
           type="radio"

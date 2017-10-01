@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import styles from './styles.css';
 
-const TextAreaField = ({
+const TextareaField = ({
   input,
   label,
   className,
@@ -12,7 +12,7 @@ const TextAreaField = ({
   <div className="form-group">
     <label>{label}</label>
     <div>
-      <textArea
+      <textarea
         {...input}
         placeholder={label}
         className={className}
@@ -28,7 +28,7 @@ const TextAreaField = ({
   </div>
 );
 
-TextAreaField.propTypes = {
+TextareaField.propTypes = {
   input: PropTypes.object,
   label: PropTypes.string,
   type: PropTypes.string,
@@ -36,4 +36,4 @@ TextAreaField.propTypes = {
   meta: PropTypes.object,
 };
 
-export default TextAreaField;
+export default TextareaField;
