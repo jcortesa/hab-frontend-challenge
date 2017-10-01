@@ -6,6 +6,8 @@ import EstimatedDateSelectorField from '../EstimatedDateSelectorField';
 import FormField from '../FormField';
 import TextAreaField from '../TextAreaField';
 
+import categoriesData from './categoriesData.js';
+
 const validate = (values) => {
   const errors = {};
   if (!values.email) {
@@ -21,19 +23,6 @@ const pricePreferences = [
   'Lo más barato',
   'Relación calidad precio',
   'Mejor calidad',
-];
-
-const categories = [
-  {
-    id: 1,
-    name: 'asdf',
-    slug: 'asdf',
-  },
-  {
-    id: 2,
-    name: 'qwer',
-    slug: 'qwer',
-  },
 ];
 
 const SyncValidationForm = (props) => {
@@ -54,7 +43,7 @@ const SyncValidationForm = (props) => {
         name="categoria"
         component={CategorySelectorField}
         label="Categoría"
-        categories={categories}
+        categories={categoriesData}
       />
       {pricePreferences.map((option) =>
         <Field

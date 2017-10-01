@@ -7,8 +7,6 @@ const CategorySelectorField = ({
   categories,
   input,
   label,
-  type,
-  className,
   meta: { touched, error }
 }) => (
   <div className="form-group">
@@ -17,12 +15,22 @@ const CategorySelectorField = ({
       <select {...input}>
         <option value="">Seleccionar una categoría…</option>
         {categories.map((category) =>
-          <option value={category.id} key={category.id}>
-            {category.name}
-          </option>
+          <optgroup label={category.name}>
+            {category.children.map((childCategory) =>
+              <option value={childCategory.id} key={childCategory.id}>
+                {childCategory.name}
+              </option>
+            )}
+          </optgroup>
         )}
       </select>
-      {touched && error && <span className={styles.error}><i className="fa fa-exclamation-circle" aria-hidden="true" />&nbsp;{error}</span>}
+      {
+        touched && error &&
+        <span className={styles.error}>
+          <i className="fa fa-exclamation-circle" aria-hidden="true" />
+          &nbsp;{error}
+        </span>
+      }
     </div>
   </div>
 );
@@ -30,8 +38,6 @@ const CategorySelectorField = ({
 CategorySelectorField.propTypes = {
   input: PropTypes.object,
   label: PropTypes.string,
-  type: PropTypes.string,
-  className: PropTypes.string,
   meta: PropTypes.object,
 };
 
