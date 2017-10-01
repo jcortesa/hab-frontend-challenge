@@ -1,7 +1,10 @@
 import { Field, reduxForm } from 'redux-form';
 import React from 'react';
 
+import CategorySelectorField from '../CategorySelectorField';
+import EstimatedDateSelectorField from '../EstimatedDateSelectorField';
 import FormField from '../FormField';
+import TextAreaField from '../TextAreaField';
 
 const validate = (values) => {
   const errors = {};
@@ -14,30 +17,86 @@ const validate = (values) => {
   return errors;
 };
 
+const pricePreferences = [
+  'Lo más barato',
+  'Relación calidad precio',
+  'Mejor calidad',
+];
+
+const categories = [
+  {
+    id: 1,
+    name: 'asdf',
+    slug: 'asdf',
+  },
+  {
+    id: 2,
+    name: 'qwer',
+    slug: 'qwer',
+  },
+];
+
 const SyncValidationForm = (props) => {
   const { handleSubmit, submitting, invalid } = props;
   return (
     <form onSubmit={handleSubmit}>
+      <Field
+        name="descripcion"
+        component={TextAreaField}
+        label="Descripción"
+      />
+      <Field
+        name="fechaEstimada"
+        component={EstimatedDateSelectorField}
+        label="Cuándo"
+      />
+      <Field
+        name="categoria"
+        component={CategorySelectorField}
+        label="Categoría"
+        categories={categories}
+      />
+      {pricePreferences.map((option) =>
         <Field
-          name="email"
-          type="email"
           component={FormField}
-          label="Email"
+          label={option}
+          name="preferenciaPrecio"
+          type="radio"
+          value={option}
         />
-        {
-          props.hasError && (
-            <p>Errores encontrados</p>
-          )
-        }
-        <div>
-          <button
-            type="submit"
-            className="btn btn-primary"
-            disabled={invalid || submitting}
-          >
-            Enviar
-          </button>
-        </div>
+      )}
+      <Field
+        name="nombre"
+        type="text"
+        component={FormField}
+        label="Nombre"
+      />
+      <Field
+        name="email"
+        type="email"
+        component={FormField}
+        label="Email"
+      />
+      <Field
+        name="telefono"
+        type="text"
+        component={FormField}
+        label="Teléfono"
+      />
+      {
+        props.hasError && (
+          <p>Errores encontrados</p>
+        )
+      }
+      <div>
+        <button
+          type="submit"
+          className="btn btn-primary"
+          disabled={invalid || submitting}
+        >
+          Enviar
+        </button>
+      </div>
     </form>
   );
 };
