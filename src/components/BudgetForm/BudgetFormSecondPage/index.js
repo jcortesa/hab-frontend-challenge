@@ -3,6 +3,7 @@ import React from 'react';
 
 import CategorySelectorField from '../../CategorySelectorField';
 import FormField from '../../FormField';
+import RadioField from '../../RadioField';
 
 const pricePreferences = [
   'Lo más barato',
@@ -31,11 +32,10 @@ const SyncValidationForm = (props) => {
       />
       {pricePreferences.map((option, key) =>
         <Field
-          component={FormField}
+          component={RadioField}
           key={key}
           label={option}
           name="preferenciaPrecio"
-          type="radio"
           value={option}
         />
       )}
