@@ -36,7 +36,7 @@ class BudgetForm extends Component {
         {this.state.page === 3 &&
           <BudgetFormThirdPage
             previousPage={() => this.previousPage()}
-            onClickSubmit={(values) => console.log(values)}
+            onSubmit={this.props.onSubmit}
           />}
       </div>
     )

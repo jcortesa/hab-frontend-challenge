@@ -36,4 +36,6 @@ const onSubmit = (values, dispatch, { onSubmit }) => onSubmit();
 export default reduxForm({
   form: 'budgetForm',
   onSubmit,
+  destroyOnUnmount: false,
+  forceUnregisterOnUnmount: true,
 })(SyncValidationForm);

@@ -68,7 +68,7 @@ const SyncValidationForm = (props) => {
   );
 };
 
-const onSubmit = (values, dispatch, { onClickSubmit }) => onClickSubmit(values);
+const onSubmit = (values, dispatch, { onSubmit }) => onSubmit;
 
 const asyncValidate = (values) => {
   return axios.get(
@@ -90,6 +90,12 @@ export default reduxForm({
   form: 'budgetForm',
   validate,
   onSubmit,
+  asyncBlurFields: ['email'],
   asyncValidate,
-  asyncBlurFields: ['email']
+  shouldAsyncValidate: ({syncValidationPasses, trigger}) => {
+    if (!syncValidationPasses) return false;
+    return trigger !== 'submit';
+  },
+  destroyOnUnmount: false,
+  forceUnregisterOnUnmount: true,
 })(SyncValidationForm);
