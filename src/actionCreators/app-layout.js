@@ -1,9 +1,11 @@
 import axios from 'axios';
+import { reset } from 'redux-form';
 
 import {
   FETCH_CATEGORIES,
   NEXT_PAGE,
   PREVIOUS_PAGE,
+  RESET_FORM
 } from '../actionTypes/app-layout';
 
 export function fetchCategories() {
@@ -38,7 +40,10 @@ export function createBudget(values) {
         'Content-Type': 'application/json',
       }
     }
-  );
+  ).then(() => {
+    dispatch({ type: NEXT_PAGE });
+    dispatch(reset('budgetForm'));
+  });
 }
 
 export function nextPage() {
@@ -47,4 +52,8 @@ export function nextPage() {
 
 export function previousPage() {
   return (dispatch) => dispatch({ type: PREVIOUS_PAGE });
+}
+
+export function resetForm() {
+  return (dispatch) => dispatch({ type: RESET_FORM });
 }

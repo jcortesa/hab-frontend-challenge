@@ -1,33 +1,40 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import BudgetFormFirstPage from './BudgetFormFirstPage';
 import BudgetFormSecondPage from './BudgetFormSecondPage';
 import BudgetFormThirdPage from './BudgetFormThirdPage';
 
-class BudgetForm extends Component {
-  render() {
-    return (
+const BudgetForm = (props) => (
+  <div>
+    {
+      props.formPage === 1 &&
+      <BudgetFormFirstPage onSubmit={() => props.nextPage()} />
+    }
+    {
+      props.formPage === 2 &&
+      <BudgetFormSecondPage
+        previousPage={() => props.previousPage()}
+        onSubmit={() => props.nextPage()}
+        categories={props.categories}
+      />
+    }
+    {
+      props.formPage === 3 &&
+      <BudgetFormThirdPage
+        previousPage={() => props.previousPage()}
+        onSubmit={(values) => props.onSubmit(values)}
+      />
+    }
+    {
+      props.formPage === 4 &&
       <div>
-        {
-          this.props.formPage === 1 &&
-          <BudgetFormFirstPage onSubmit={() => this.props.nextPage()} />
-        }
-        {this.props.formPage === 2 &&
-          <BudgetFormSecondPage
-            previousPage={() => this.props.previousPage()}
-            onSubmit={() => this.props.nextPage()}
-            categories={this.props.categories}
-          />}
-        {this.props.formPage === 3 &&
-          <BudgetFormThirdPage
-            previousPage={() => this.props.previousPage()}
-            onSubmit={this.props.onSubmit}
-          />}
+        <p>¡Formulario enviado correctamente!</p>
+        <button onClick={() => props.resetForm()}>Nuevo presupuesto</button>
       </div>
-    )
-  }
-}
+    }
+  </div>
+);
 
 BudgetForm.propTypes = {
   onSubmit: PropTypes.func.isRequired

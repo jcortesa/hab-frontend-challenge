@@ -12,11 +12,12 @@ const AppLayout = (props) => (
       <h1 className="App-title">Solicitud presupuesto</h1>
     </header>
     <BudgetForm
-      categories={props.categories}
       onSubmit={(values) => props.createBudget(values)}
+      categories={props.categories}
       formPage={props.formPage}
       nextPage={props.nextPage}
       previousPage={props.previousPage}
+      resetForm={props.resetForm}
     />
   </div>
 );

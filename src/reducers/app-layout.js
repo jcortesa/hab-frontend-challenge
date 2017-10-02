@@ -2,6 +2,7 @@ import {
   FETCH_CATEGORIES,
   NEXT_PAGE,
   PREVIOUS_PAGE,
+  RESET_FORM
 } from '../actionTypes/app-layout';
 
 const initialState = {
@@ -26,6 +27,7 @@ function modal(state = initialState, action) {
       ...state,
       formPage: state.formPage - 1
     };
+  case RESET_FORM:
   case 'RESET':
     return { ...initialState };
   default: return state;
