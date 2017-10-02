@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import styles from './styles.css';
+import './styles.css';
 
 const CategorySelectorField = ({
   categories,
@@ -26,7 +26,7 @@ const CategorySelectorField = ({
       </select>
       {
         touched && error &&
-        <span className={styles.error}>
+        <span className="error">
           <i className="fa fa-exclamation-circle" aria-hidden="true" />
           &nbsp;{error}
         </span>
@@ -39,6 +39,7 @@ CategorySelectorField.propTypes = {
   input: PropTypes.object,
   label: PropTypes.string,
   meta: PropTypes.object,
+  categories: PropTypes.array.isRequired,
 };
 
 export default CategorySelectorField;

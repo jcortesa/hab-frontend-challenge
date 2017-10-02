@@ -17,16 +17,19 @@ const SyncValidationForm = (props) => {
   const { handleSubmit, submitting, invalid } = props;
   return (
     <form onSubmit={handleSubmit}>
-      <Field
-        name="descripcion"
-        component={TextareaField}
-        label="Descripción"
-      />
-      <Field
-        name="fechaEstimada"
-        component={EstimatedDateSelectorField}
-        label="Cuándo"
-      />
+      <fieldset>
+        <legend>Información general</legend>
+        <Field
+          name="descripcion"
+          component={TextareaField}
+          label="Descripción"
+        />
+        <Field
+          name="fechaEstimada"
+          component={EstimatedDateSelectorField}
+          label="Cuándo"
+        />
+      </fieldset>
       <div>
         <button
           type="submit"

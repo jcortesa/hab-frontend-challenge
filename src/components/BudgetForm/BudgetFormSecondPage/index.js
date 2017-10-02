@@ -2,7 +2,6 @@ import { Field, reduxForm } from 'redux-form';
 import React from 'react';
 
 import CategorySelectorField from '../../CategorySelectorField';
-import FormField from '../../FormField';
 import RadioField from '../../RadioField';
 
 const pricePreferences = [
@@ -24,25 +23,29 @@ const SyncValidationForm = (props) => {
   const { handleSubmit, submitting, invalid, previousPage } = props;
   return (
     <form onSubmit={handleSubmit}>
-      <Field
-        name="categoria"
-        component={CategorySelectorField}
-        label="Categoría"
-        categories={props.categories}
-      />
-      {pricePreferences.map((option, key) =>
+      <fieldset>
+        <legend>Información presupuesto (continuación)</legend>
         <Field
-          component={RadioField}
-          key={key}
-          label={option}
-          name="preferenciaPrecio"
-          value={option}
+          name="categoria"
+          component={CategorySelectorField}
+          label="Categoría"
+          categories={props.categories}
         />
-      )}
+        <strong><label>Preferencia precio</label></strong>
+        {pricePreferences.map((option, key) =>
+          <Field
+            component={RadioField}
+            key={key}
+            label={option}
+            name="preferenciaPrecio"
+            value={option}
+          />
+        )}
+      </fieldset>
       <div>
         <button
           type="button"
-          className="btn btn-primary"
+          className="btn btn-secondary"
           onClick={previousPage}
         >
           Volver

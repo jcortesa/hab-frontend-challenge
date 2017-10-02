@@ -28,46 +28,47 @@ const SyncValidationForm = (props) => {
   const { handleSubmit, submitting, invalid, previousPage } = props;
   return (
     <form onSubmit={handleSubmit}>
-      <Field
-        name="nombre"
-        type="text"
-        component={FormField}
-        label="Nombre"
-      />
-      <Field
-        name="email"
-        type="email"
-        component={FormField}
-        label="Email"
-      />
-      <Field
-        name="telefono"
-        type="text"
-        component={FormField}
-        label="Teléfono"
-      />
-      <Field
-        name="direccion"
-        type="text"
-        component={FormField}
-        label="Dirección"
-      />
-      {
-        props.hasError && (
-          <p>Errores encontrados</p>
-        )
-      }
+      <fieldset>
+        <legend>Datos personales</legend>
+        <Field
+          name="nombre"
+          type="text"
+          component={FormField}
+          label="Nombre"
+        />
+        <Field
+          name="email"
+          type="email"
+          component={FormField}
+          label="Email"
+        />
+        <Field
+          name="telefono"
+          type="text"
+          component={FormField}
+          label="Teléfono"
+        />
+        <Field
+          name="direccion"
+          type="text"
+          component={FormField}
+          label="Dirección"
+        />
+        {
+          props.hasError && (<p>Errores encontrados</p>)
+        }
+      </fieldset>
       <div>
         <button
           type="button"
-          className="btn btn-primary"
+          className="btn btn-secondary"
           onClick={previousPage}
         >
           Volver
         </button>
         <button
           type="submit"
-          className="btn btn-primary"
+          className="btn btn-success"
           disabled={invalid || submitting}
         >
           Enviar

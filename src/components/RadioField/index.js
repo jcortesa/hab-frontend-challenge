@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import styles from './styles.css';
+import './styles.css';
 
 const RadioField = ({
   input,
@@ -10,9 +10,9 @@ const RadioField = ({
   meta: { touched, error }
 }) => (
   <div className="form-group">
-    <input {...input} placeholder={label} type="radio" className={className} id={label} />
-    <label htmlFor={label}>{label}</label>
-    {touched && error && <span className={styles.error}><i className="fa fa-exclamation-circle" aria-hidden="true" />&nbsp;{error}</span>}
+    <input {...input} placeholder={label} type="radio" className={`form-check-input ${className}`} id={label} />
+    &nbsp;<label className="form-check-label" htmlFor={label}>{label}</label>
+    {touched && error && <span className="error"><i className="fa fa-exclamation-circle" aria-hidden="true" />&nbsp;{error}</span>}
   </div>
 );
 

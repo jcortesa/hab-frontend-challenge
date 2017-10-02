@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import styles from './styles.css';
+import './styles.css';
 
 const dates = [
   'Lo antes posible',
@@ -28,7 +28,7 @@ const EstimatedDateSelectorField = ({
           </option>
         )}
       </select>
-      {touched && error && <span className={styles.error}><i className="fa fa-exclamation-circle" aria-hidden="true" />&nbsp;{error}</span>}
+      {touched && error && <span className="error"><i className="fa fa-exclamation-circle" aria-hidden="true" />&nbsp;{error}</span>}
     </div>
   </div>
 );

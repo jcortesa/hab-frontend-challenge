@@ -29,8 +29,13 @@ const BudgetForm = (props) => (
     {
       props.formPage === 4 &&
       <div>
-        <p>¡Formulario enviado correctamente!</p>
-        <button onClick={() => props.resetForm()}>Nuevo presupuesto</button>
+        <h2>¡Formulario enviado correctamente!</h2>
+        <button
+          className="btn btn-primary"
+          onClick={() => props.resetForm()}
+        >
+          Nuevo presupuesto
+        </button>
       </div>
     }
   </div>
