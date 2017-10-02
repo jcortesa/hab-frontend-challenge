@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import styles from './styles.css';
+import './styles.css';
 
 const FormField = ({
   input,
@@ -14,7 +14,7 @@ const FormField = ({
     <label>{label}</label>
     <div>
       <input {...input} placeholder={label} type={type} className={className} />
-      {touched && error && <span className={styles.error}><i className="fa fa-exclamation-circle" aria-hidden="true" />&nbsp;{error}</span>}
+      {touched && error && <span className="error"><i className="fa fa-exclamation-circle" aria-hidden="true" />&nbsp;{error}</span>}
     </div>
   </div>
 );
