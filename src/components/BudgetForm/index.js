@@ -6,36 +6,22 @@ import BudgetFormSecondPage from './BudgetFormSecondPage';
 import BudgetFormThirdPage from './BudgetFormThirdPage';
 
 class BudgetForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      page: 1,
-    };
-  }
-  nextPage() {
-    this.setState({ page: this.state.page + 1 });
-  }
-
-  previousPage() {
-    this.setState({ page: this.state.page - 1 });
-  }
-
   render() {
     return (
       <div>
         {
-          this.state.page === 1 &&
-          <BudgetFormFirstPage onSubmit={() => this.nextPage()} />
+          this.props.formPage === 1 &&
+          <BudgetFormFirstPage onSubmit={() => this.props.nextPage()} />
         }
-        {this.state.page === 2 &&
+        {this.props.formPage === 2 &&
           <BudgetFormSecondPage
-            previousPage={() => this.previousPage()}
-            onSubmit={() => this.nextPage()}
+            previousPage={() => this.props.previousPage()}
+            onSubmit={() => this.props.nextPage()}
             categories={this.props.categories}
           />}
-        {this.state.page === 3 &&
+        {this.props.formPage === 3 &&
           <BudgetFormThirdPage
-            previousPage={() => this.previousPage()}
+            previousPage={() => this.props.previousPage()}
             onSubmit={this.props.onSubmit}
           />}
       </div>
