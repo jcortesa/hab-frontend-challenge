@@ -2,10 +2,7 @@ import { Field, reduxForm } from 'redux-form';
 import React from 'react';
 import axios from 'axios';
 
-import CategorySelectorField from '../CategorySelectorField';
-import EstimatedDateSelectorField from '../EstimatedDateSelectorField';
-import FormField from '../FormField';
-import TextareaField from '../TextareaField';
+import FormField from '../../FormField';
 
 const validate = (values) => {
   const errors = {};
@@ -18,42 +15,10 @@ const validate = (values) => {
   return errors;
 };
 
-const pricePreferences = [
-  'Lo más barato',
-  'Relación calidad precio',
-  'Mejor calidad',
-];
-
 const SyncValidationForm = (props) => {
-  const { handleSubmit, submitting, invalid } = props;
+  const { handleSubmit, submitting, invalid, previousPage } = props;
   return (
     <form onSubmit={handleSubmit}>
-      <Field
-        name="descripcion"
-        component={TextareaField}
-        label="Descripción"
-      />
-      <Field
-        name="fechaEstimada"
-        component={EstimatedDateSelectorField}
-        label="Cuándo"
-      />
-      <Field
-        name="categoria"
-        component={CategorySelectorField}
-        label="Categoría"
-        categories={props.categories}
-      />
-      {pricePreferences.map((option, key) =>
-        <Field
-          component={FormField}
-          key={key}
-          label={option}
-          name="preferenciaPrecio"
-          type="radio"
-          value={option}
-        />
-      )}
       <Field
         name="nombre"
         type="text"
@@ -84,6 +49,13 @@ const SyncValidationForm = (props) => {
         )
       }
       <div>
+        <button
+          type="button"
+          className="btn btn-primary"
+          onClick={previousPage}
+        >
+          Volver
+        </button>
         <button
           type="submit"
           className="btn btn-primary"

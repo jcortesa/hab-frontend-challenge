@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import SinglePageFormLayout from './components/SinglePageFormLayout';
+import BudgetForm from './components/BudgetForm';
 
 import logo from './images/logo.png';
 import './App.css';
@@ -37,9 +37,9 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Solicitud presupuesto</h1>
         </header>
-        <SinglePageFormLayout
+        <BudgetForm
           categories={this.state.categories}
-          onClickSubmit={(values) => axios.post(
+          onSubmit={(values) => axios.post(
             'http://localhost:8000/app_dev.php/budgets',
             {
               description: values.descripcion,
