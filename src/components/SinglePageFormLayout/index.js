@@ -1,5 +1,6 @@
 import { Field, reduxForm } from 'redux-form';
 import React from 'react';
+import axios from 'axios';
 
 import CategorySelectorField from '../CategorySelectorField';
 import EstimatedDateSelectorField from '../EstimatedDateSelectorField';
@@ -97,8 +98,26 @@ const SyncValidationForm = (props) => {
 
 const onSubmit = (values, dispatch, { onClickSubmit }) => onClickSubmit(values);
 
+const asyncValidate = (values) => {
+  return axios.get(
+    'http://localhost:8000/app_dev.php/validate',
+    {
+      params: { email: values.email },
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+    }
+  )
+  .catch((response) => {
+    throw { email: 'Hotmail no aceptado' };
+  });
+}
+
 export default reduxForm({
   form: 'budgetForm',
   validate,
   onSubmit,
+  asyncValidate,
+  asyncBlurFields: ['email']
 })(SyncValidationForm);
