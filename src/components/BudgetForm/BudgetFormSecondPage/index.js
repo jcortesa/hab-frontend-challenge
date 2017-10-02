@@ -10,6 +10,15 @@ const pricePreferences = [
   'Mejor calidad',
 ];
 
+const validate = (values) => {
+  const errors = {};
+  if (!values.categoria) {
+    errors.categoria = 'Requerido';
+  }
+
+  return errors;
+};
+
 const SyncValidationForm = (props) => {
   const { handleSubmit, submitting, invalid, previousPage } = props;
   return (
@@ -53,8 +62,9 @@ const SyncValidationForm = (props) => {
 const onSubmit = (values, dispatch, { onSubmit }) => onSubmit();
 
 export default reduxForm({
-  form: 'budgetForm',
   onSubmit,
+  validate,
+  form: 'budgetForm',
   destroyOnUnmount: false,
   forceUnregisterOnUnmount: true,
 })(SyncValidationForm);

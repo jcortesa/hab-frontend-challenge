@@ -4,6 +4,15 @@ import React from 'react';
 import EstimatedDateSelectorField from '../../EstimatedDateSelectorField';
 import TextareaField from '../../TextareaField';
 
+const validate = (values) => {
+  const errors = {};
+  if (!values.descripcion) {
+    errors.descripcion = 'Requerido';
+  }
+
+  return errors;
+};
+
 const SyncValidationForm = (props) => {
   const { handleSubmit, submitting, invalid } = props;
   return (
@@ -34,8 +43,9 @@ const SyncValidationForm = (props) => {
 const onSubmit = (values, dispatch, { onSubmit }) => onSubmit();
 
 export default reduxForm({
-  form: 'budgetForm',
+  validate,
   onSubmit,
+  form: 'budgetForm',
   destroyOnUnmount: false,
   forceUnregisterOnUnmount: true,
 })(SyncValidationForm);
